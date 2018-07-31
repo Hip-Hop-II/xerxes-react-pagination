@@ -9,7 +9,8 @@ class Select extends PureComponent {
     const selectValue = props.options.length > 0 ? props.options[0] : ''
     this.state = {
       selectIndex: 0,
-      selectValue: selectValue
+      selectValue: selectValue,
+      show: false
     }
   }
   renderItem = (options) => {
@@ -21,23 +22,36 @@ class Select extends PureComponent {
     ))
   }
   itemClick = (item, index) => {
-    this.setState({
-      selectIndex: index,
-      selectValue: this.props.options[index]
-    })
-    if (this.props.selectChange) {
-      this.props.selectChange(item, index)
+    if (index !== this.state.selectIndex) {
+      this.setState({
+        selectIndex: index,
+        selectValue: this.props.options[index],
+        show: false
+      })
+      if (this.props.selectChange) {
+        this.props.selectChange(item, index)
+      }
     }
+  }
+  selectChange = () => {
+    this.setState({
+      show: !this.state.show
+    })
   }
   render () {
     const {options} = this.props
-    const {selectIndex} = this.state 
+    const {selectIndex, show} = this.state 
     return (
       <div className="xerxes-select__selection">
-        <div className="xerxes-select__value">{`${options[selectIndex]} 条/页`}</div>
-        <ul className="xerxes-select__list">
+        <div className={classnames('xerxes-select__value', {
+          'down': show
+        })} onClick={this.selectChange}>
+          <span>{`${options[selectIndex]} 条/页`}</span>
+          <i className="icon iconfont icon-xiangxiajiantou"></i>
+        </div>
+        {show && <ul className="xerxes-select__list">
           {this.renderItem(options)}
-        </ul>
+        </ul> }
       </div>
     )
   }

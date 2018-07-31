@@ -118,7 +118,7 @@ class Pagination extends PureComponent {
           </li>
         </ul> }
         <Select 
-        options={[5, 10, 15, 20]}
+        options={[10, 20, 30, 40]}
         />
         <div className="xerxes-quickjump">
           <span>前往</span>

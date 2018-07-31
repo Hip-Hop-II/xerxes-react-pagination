@@ -3,25 +3,36 @@
   min-width: 80px;
   font-size: 12px;
   color: #3f536e;
+  margin-left: 10px;
 }
 
 .xerxes-select__value {
   line-height: 28px;
-  padding: 0 24px 0 12px;
+  padding: 0 30px 0 12px;
   min-height: 28px;
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: all .3s ease;
   cursor: pointer;
+  position: relative;
+}
+.xerxes-select__value>i {
+  position: absolute;
+  font-size: 12px;
+  right: 10px;
+  transition: all .4s ease;
 }
 
+.xerxes-select__value.down>i {
+  transform: rotate(180deg);
+}
 .xerxes-select__value:hover {
   border-color: rgba(91, 60, 196, .6);
 }
 
 .xerxes-select__list {
   position: absolute;
-  top: 32px;
+  top: 34px;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
@@ -29,6 +40,17 @@
   overflow-y: auto;
   max-height: 200px;
   border-radius: 4px;
+  animation: slideUp 400ms ease;
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .xerxes-select__item {
@@ -47,4 +69,7 @@
 
 .xerxes-select__item:hover {
   background-color: #ecf2fc;
+}
+.xerxes-select__item.active {
+  background-color: #f7f7f7;
 }
