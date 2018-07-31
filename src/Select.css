@@ -1,0 +1,50 @@
+.xerxes-select__selection {
+  position: relative;
+  min-width: 80px;
+  font-size: 12px;
+  color: #3f536e;
+}
+
+.xerxes-select__value {
+  line-height: 28px;
+  padding: 0 24px 0 12px;
+  min-height: 28px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.xerxes-select__value:hover {
+  border-color: rgba(91, 60, 196, .6);
+}
+
+.xerxes-select__list {
+  position: absolute;
+  top: 32px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+  z-index: 100;
+  overflow-y: auto;
+  max-height: 200px;
+  border-radius: 4px;
+}
+
+.xerxes-select__item {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+  width: 100%;
+  padding: 6px 12px;
+  text-align: left;
+  white-space: nowrap;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.xerxes-select__item:hover {
+  background-color: #ecf2fc;
+}

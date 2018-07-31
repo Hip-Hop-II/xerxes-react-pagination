@@ -1,0 +1,101 @@
+@font-face {font-family: "iconfont";
+  src: url('./assets/fonts/iconfont.eot?t=1533032636757'); /* IE9*/
+  src: url('./assets/fonts/iconfont.eot?t=1533032636757#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAVEAAsAAAAAB8AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7khMY21hcAAAAYAAAABkAAABlM7yn19nbHlmAAAB5AAAAVkAAAF8F6xoVWhlYWQAAANAAAAALwAAADYSK/d4aGhlYQAAA3AAAAAcAAAAJAfeA4VobXR4AAADjAAAABAAAAAQD+kAAGxvY2EAAAOcAAAACgAAAAoBNACabWF4cAAAA6gAAAAfAAAAIAETAF1uYW1lAAADyAAAAUUAAAJtPlT+fXBvc3QAAAUQAAAAMwAAAE/O1X98eJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDxLYG7438AQw9zA0AAUZgTJAQArIgzOeJzFkMENgCAQBOcAeRhLMb6sxo+UQcW0ocvhxwrYZNjsQoAcsABR7CKBFYyuS615H1m9TxzKWW4EaivPo1zb7a4j2svuod9omWmyeU//tfl6fqnPuX7oi+0eaF60MiC+GOUPs3icNZA9S8NQFIbve2Nyb2qbtEnatOl3YhulWrDGOojtIojSoeIgbvUH6NrFoYvg4ODkXEQQtyIuQn+JW9Ff4XD1RvFwhsM5vA88h6iEfC+UuZInNlklm2SfDAmB1oJv0DLqYdSmLWTratZ1DCUMwjoL/LayB9fXnFynGzVdjWkmDFSwVe90wzYNsR316C46uTJQKHonVqNkKXdI5MPKtTiiD8hWg5LZ2xCH632nU7P5OGlZBcu65ZqqckqXTAMXbk5X9YQmHlXTy86ra7SKZCH0BmepWtE6v4kuyw1XByYT2MWa8dTPeBnZV17OtgosneJ5LxWsOBh/LuftZLn5QWRBur4oUI5JmhAdTakgGbHHDroR/RJD7pgMUzFipsMxY7jHazyKkTiVJ4437vxz6OKPo+oy2/SZ5LiIP0LfxQjT39iQMcxkMMAzpjFbDJhcH3AzxvwAa68/WAAAAHicY2BkYGAAYr5kbdt4fpuvDNwsDCBwvS1yD4L+v4mFgTkQyOVgYAKJAgD/yAmBAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2AJoAvgAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nGWPTU7DMBCFX/oHpBKqqGCH5AViASj9EatuWFRq911036ZOmyqJI8et1ANwHo7ACTgC3IA78EgnmzaWx9+8eWNPANzgBx6O3y33kT1cMjtyDRe4F65TfxBukF+Em2jjVbhF/U3YxzOmwm10YXmD17hi9oR3YQ8dfAjXcI1P4Tr1L+EG+Vu4iTv8CrfQ8erCPuZeV7iNRy/2x1YvnF6p5UHFockikzm/gple75KFrdLqnGtbxCZTg6BfSVOdaVvdU+zXQ+ciFVmTqgmrOkmMyq3Z6tAFG+fyUa8XiR6EJuVYY/62xgKOcQWFJQ6MMUIYZIjK6Og7VWb0r7FDwl57Vj3N53RbFNT/c4UBAvTPXFO6stJ5Ok+BPV8bUnV0K27LnpQ0kV7NSRKyQl7WtlRC6gE2ZVeOEXpc0Yk/KGdI/wAJWm7IAAAAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYK/IjMxL70yvzQLSJfkl0L4VaX5UD4DAwAB/g2XAA==') format('woff'),
+  url('./assets/fonts/iconfont.ttf?t=1533032636757') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./assets/fonts/iconfont.svg?t=1533032636757#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-xiangyoujiantou:before { content: "\e65f"; }
+
+.icon-xiangzuojiantou:before { content: "\e660"; }
+
+.xerxes-pagination__list {
+  display: flex;
+}
+
+.xerxes-pagination__item {
+  min-width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: all .3s ease;
+  cursor: pointer;
+  color: #3f536e;
+  border: 1px solid #ccc;
+  margin-right: 4px;
+  font-size: 12px;
+}
+.xerxes-pagination__item:hover {
+  border-color: rgba(91, 60, 196, .6);
+}
+.xerxes-pagination__item.current {
+  background-color: rgba(91, 60, 196, 1);
+  border-color: transparent;
+  color: #fff;
+}
+.xerxes-pagination__item >i {
+  font-size: 12px;
+}
+.xerxes-pagination__item.disabled,
+.xerxes-pagination__item.disabled:hover
+{
+  color: #ececec;
+  border-color: #ececec;
+  cursor: no-drop;
+}
+
+.xerxes-total {
+  margin-right: 10px;
+  height: 28px;
+  line-height: 28px;
+}
+.xerxes-total span {
+  font-size: 12px;
+  color: #3f536e;
+}
+.xerxes-wrapper {
+  display: flex;
+  align-items: center;
+}
+.xerxes-quickjump>span {
+  font-size: 12px;
+  color: #3f536e;
+}
+
+.xerxes-quickjump>input[type=number] {
+  -moz-appearance:textfield;
+}
+.xerxes-quickjump>input[type=number]::-webkit-inner-spin-button,
+.xerxes-quickjump>input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.xerxes-quickjump {
+  margin-left: 10px;
+}
+.xerxes-quickjump>input {
+  outline: none;
+  border-radius: 4px;
+  border: none;
+  border: 1px solid #ccc;
+  height: 28px;
+  width: 40px;
+  text-align: center;
+  margin: 0 10px;
+  color: #3f536e;
+  transition: all .4s ease;
+}
+.xerxes-quickjump>input:focus {
+  border-color: rgba(91, 60, 196, .6);
+}
