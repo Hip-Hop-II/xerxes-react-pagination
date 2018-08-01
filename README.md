@@ -43,8 +43,13 @@ class App extends Component {
   render () {
     return (
       <div className="wrapper">
-        <h2>基本的使用</h2>
+        <h2>完整的分页</h2>
         <Pagination total={this.state.total} onChange={this._pageChange} />
+        <button onClick={this.click}>点击</button>
+        <h2>设置组件布局选项</h2>
+        <Pagination total={400} 
+        layout="pager, total"
+        onChange={this._pageChange} />
         <button onClick={this.click}>点击</button>
       </div>
     )

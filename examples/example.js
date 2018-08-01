@@ -25,7 +25,7 @@ class App extends Component {
         <Pagination total={this.state.total} onChange={this._pageChange} 
         />
         <h2>hello pagination!!</h2>
-        <Pagination total={this.state.total} onChange={this._pageChange} 
+        <Pagination total={400} onChange={this._pageChange} 
         layout="total, pager"
         />
         <button onClick={this.click}>点击</button>

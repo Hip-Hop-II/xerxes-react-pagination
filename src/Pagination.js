@@ -54,6 +54,14 @@ class Pagination extends PureComponent {
       })} key={index} onClick={() => this.itemClick(index + 1)}>{index + 1}</li>
     ))
   }
+  handleJumpPrev = () => {
+    const page = this.state.current - 5
+    page ?  this.setCurrentPage(page) : this.setCurrentPage(1)
+  }
+  handleJumpNext = () => {
+    const page = this.state.current + 5
+    page ?  this.setCurrentPage(page) : this.setCurrentPage(1)
+  }
   renderMorePaginationItem = (totalPage) => {
     const {current} = this.state
     return (
@@ -61,14 +69,18 @@ class Pagination extends PureComponent {
       <li className={classnames('xerxes-pagination__item', {
         'current': current === 1
       })} onClick={() => this.itemClick(1)}>1</li>
-      {current > 3 && <li className={classnames('xerxes-pagination__item')} >...</li>}
+      {current > 3 && <li className={classnames('xerxes-pagination__item')} 
+      onClick={this.handleJumpPrev}
+      >...</li>}
       {/* current > 3 && <li className={classnames('xerxes-pagination__item')} onClick={() => this.itemClick(current - 2)} >{ current - 2 }</li>  */}
       {current > 2 && <li className={classnames('xerxes-pagination__item')} onClick={() => this.itemClick(current - 1)} >{ current - 1 }</li>}
       {current !== 1 && current !== totalPage && <li className={classnames('xerxes-pagination__item', {'current': true})} >{ current}</li>}
       
       {current < totalPage - 1 && <li className={classnames('xerxes-pagination__item')} onClick={() => this.itemClick(current + 1)} >{ current + 1 }</li>}
       {current < totalPage - 2 && <li className={classnames('xerxes-pagination__item')} onClick={() => this.itemClick(current + 2)} >{ current + 2 }</li>}
-      {current < totalPage - 3 && <li className={classnames('xerxes-pagination__item')} >...</li>}
+      {current < totalPage - 3 && <li className={classnames('xerxes-pagination__item')} 
+      onClick={this.handleJumpNext}
+      >...</li>}
       {totalPage > 1 && <li className={classnames('xerxes-pagination__item', {
         current: current === totalPage
       })} onClick={() => this.itemClick(totalPage)}>{ totalPage }</li>}

@@ -57,7 +57,7 @@ class Select extends PureComponent {
 
 Select.propTypes = {
   options: PropTypes.array,
-  selectChange: PropTypes.func.isRequired
+  selectChange: PropTypes.func
 }
 
 Select.defaultProps = {
