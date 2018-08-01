@@ -60,7 +60,7 @@
 }
 
 .xerxes-total {
-  margin-right: 10px;
+  margin: 0 5px;
   height: 28px;
   line-height: 28px;
   display: flex;
@@ -93,7 +93,7 @@
 }
 
 .xerxes-quickjump {
-  margin-left: 10px;
+  margin: 0 5px;
 }
 .xerxes-quickjump>input {
   outline: none;

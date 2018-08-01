@@ -3,14 +3,7 @@ import PropTypes from 'prop-types'
 
 class JumpPager extends PureComponent {
   _jumpPageChange = (e) => {
-    const {totalPage, current} = this.props
-    const value = Number(e.target.value)
-    if (!value || isNaN(value) || value > totalPage) {
-      return
-    }
-    if (value !== current) {
-      this.props.jumpPageChange(Number(value))
-    }
+    this.props.jumpPageChange(e.target.value)
   }
   render () {
     const {totalPage} = this.props

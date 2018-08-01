@@ -5,6 +5,12 @@ import './Pagination.css'
 import Select from './Select.js'
 import JumpPager from './JumpPager'
 
+const Total = ({total}) => (
+  <div className="xerxes-total">
+    <span>共 {total} 条</span>
+  </div>
+)
+
 class Pagination extends PureComponent {
   constructor (props) {
     super(props)
@@ -19,12 +25,25 @@ class Pagination extends PureComponent {
       this.setCurrentPage(current)
     }
   }
+  /**
+   * 验证值是否符合要求
+   * @param {*当前页} value 
+   */
+  valideCurrent (value) {
+    value = Number(value)
+    if (!value || isNaN(value) || value > this._totalPage) {
+      return false
+    }
+    return value
+  }
   setCurrentPage (pageNumber) {
-    this.setState({
-      current: pageNumber
-    })
-    if (this.props.onChange) {
-      this.props.onChange(pageNumber)
+    if (this.valideCurrent(pageNumber)) {
+      this.setState({
+        current: this.valideCurrent(pageNumber)
+      })
+      if (this.props.onChange) {
+        this.props.onChange(this.valideCurrent(pageNumber))
+      }
     }
   }
   renderPaginationItem (length) {
@@ -117,40 +136,71 @@ class Pagination extends PureComponent {
       this.props.onSizeChange(size)
     }
   }
+
+  _renderList () {
+    const {total} = this.props
+    return !isNaN(Number(total)) && Number(total) > 0 ? (
+      <ul className="xerxes-pagination__list">
+        <li className={classnames('xerxes-pagination__item prevpage', {
+          'disabled': this._prevDisabled
+        })}
+        onClick={this.prev}
+        >
+          <i className="icon iconfont icon-xiangzuojiantou"></i>
+        </li>
+        {this._totalPage < 8 ? this.renderPaginationItem(this._totalPage) : this.renderMorePaginationItem(this._totalPage)}
+        <li className={classnames('xerxes-pagination__item nextpage', {
+          disabled: this._nextDisabled
+        })}
+        onClick={this.next}
+        >
+          <i className="icon iconfont icon-xiangyoujiantou"></i>
+        </li>
+      </ul>
+    ) : null
+  }
+
+  /**
+   * 格式化布局样式
+   * @param {*布局选项} layout 
+   */
+  formatLayout (layout) {
+    const {pageSizes} = this.props
+    let layoutOptions = {
+      pager: <Select 
+      options={pageSizes}
+        selectChange={this._selectChange}
+      />,
+      jumper: <JumpPager 
+      totalPage={this._totalPage}
+      jumpPageChange={this._jumpPageChange}
+      />
+    }
+    const layoutArray = layout.split(',')
+    layout.indexOf('total') !== -1 && layoutArray.splice(layoutArray.indexOf('total'), 1)
+    let options = []
+    if (layoutArray.length > 0) {
+      options = layoutArray.map((item, index) => {
+        if (layoutOptions[item.trim()]) {
+          return <Fragment key={index}>
+            {layoutOptions[item.trim()]}
+          </Fragment>
+        }
+      })
+    }
+    return options
+  }
+
   render () {
-    const {total, pageSizes, className, style} = this.props
+    const {className, style, layout, total} = this.props
     return (
       <div className={classnames('xerxes-wrapper', className)}
         style={style}
       >
-        <div className="xerxes-total">
-          <span>共 {total} 条</span>
-        </div>
-        {!isNaN(Number(total)) && Number(total) > 0 && <ul className="xerxes-pagination__list">
-          <li className={classnames('xerxes-pagination__item prevpage', {
-            'disabled': this._prevDisabled
-          })}
-          onClick={this.prev}
-          >
-            <i className="icon iconfont icon-xiangzuojiantou"></i>
-          </li>
-          {this._totalPage < 8 ? this.renderPaginationItem(this._totalPage) : this.renderMorePaginationItem(this._totalPage)}
-          <li className={classnames('xerxes-pagination__item nextpage', {
-            disabled: this._nextDisabled
-          })}
-          onClick={this.next}
-          >
-            <i className="icon iconfont icon-xiangyoujiantou"></i>
-          </li>
-        </ul> }
-        <Select 
-        options={pageSizes}
-          selectChange={this._selectChange}
-        />
-        <JumpPager 
-        totalPage={this._totalPage}
-        jumpPageChange={this._jumpPageChange}
-        />
+        {layout.indexOf('total') !== -1 && <Total total={total} />}
+        {this._renderList()}
+        {this.formatLayout(layout)}
+        
       </div>
     )
   }
@@ -160,7 +210,7 @@ Pagination.propTypes = {
   total: PropTypes.number,
   currentPage: PropTypes.number,
   pageSize: PropTypes.number,
-  layout: PropTypes.array,
+  layout: PropTypes.string,
   pageSizes: PropTypes.array,
   onSizeChange: PropTypes.func,
   onCurrentChange: PropTypes.func
@@ -170,7 +220,8 @@ Pagination.defaultProps = {
   total: 0,
   currentPage: 1,
   pageSize: 10,
-  pageSizes: [10, 20, 30, 40]
+  pageSizes: [10, 20, 30, 40],
+  layout: 'pager, jumper, total'
 }
 
 export default Pagination

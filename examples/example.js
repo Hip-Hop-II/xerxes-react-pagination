@@ -17,7 +17,17 @@ class App extends Component {
     return (
       <div className="wrapper">
         <h2>hello pagination!!</h2>
-        <Pagination total={this.state.total} onChange={this._pageChange} />
+        <Pagination total={this.state.total} onChange={this._pageChange} 
+        layout="total, jumper, pager"
+        />
+        <button onClick={this.click}>点击</button>
+        <h2>hello pagination!!</h2>
+        <Pagination total={this.state.total} onChange={this._pageChange} 
+        />
+        <h2>hello pagination!!</h2>
+        <Pagination total={this.state.total} onChange={this._pageChange} 
+        layout="total, pager"
+        />
         <button onClick={this.click}>点击</button>
       </div>
     )
