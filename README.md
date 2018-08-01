@@ -77,5 +77,5 @@ class App extends Component {
 
 ### methods说明
 | 方法名称 | 方法说明 | 参数说明 |
-| :------ | :------- |
+| :------ | :------- | :------|
 | setCurrentPage | 设置当前页 | 范围内的页数 |
