@@ -1,0 +1,43 @@
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+
+class JumpPager extends PureComponent {
+  _jumpPageChange = (e) => {
+    const {totalPage, current} = this.props
+    const value = Number(e.target.value)
+    if (!value || isNaN(value) || value > totalPage) {
+      return
+    }
+    if (value !== current) {
+      this.props.jumpPageChange(Number(value))
+    }
+  }
+  render () {
+    const {totalPage} = this.props
+    return (
+      <div className="xerxes-quickjump">
+        <span>前往</span>
+        <input
+          type="number"
+          min={1}
+          max={totalPage}
+          onBlur={this._jumpPageChange}
+          onKeyUp={e => {
+            if (e.keyCode === 13) {
+              this._jumpPageChange(e)
+            }
+          }}
+        />
+        <span>页</span>
+      </div>
+    )
+  }
+}
+
+JumpPager.propTypes = {
+  totalPage: PropTypes.number,
+  jumpPageChange: PropTypes.func,
+  current: PropTypes.number
+}
+
+export default JumpPager

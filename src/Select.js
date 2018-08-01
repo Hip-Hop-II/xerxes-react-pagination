@@ -22,15 +22,13 @@ class Select extends PureComponent {
     ))
   }
   itemClick = (item, index) => {
-    if (index !== this.state.selectIndex) {
-      this.setState({
-        selectIndex: index,
-        selectValue: this.props.options[index],
-        show: false
-      })
-      if (this.props.selectChange) {
-        this.props.selectChange(item, index)
-      }
+    this.setState({
+      selectIndex: index,
+      selectValue: this.props.options[index],
+      show: false
+    })
+    if (this.props.selectChange) {
+      this.props.selectChange(item, index)
     }
   }
   selectChange = () => {
@@ -58,7 +56,12 @@ class Select extends PureComponent {
 }
 
 Select.propTypes = {
+  options: PropTypes.array,
+  selectChange: PropTypes.func.isRequired
+}
 
+Select.defaultProps = {
+  options: []
 }
 
 export default Select

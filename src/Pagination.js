@@ -3,13 +3,15 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import './Pagination.css'
 import Select from './Select.js'
+import JumpPager from './JumpPager'
 
 class Pagination extends PureComponent {
   constructor (props) {
     super(props)
     this.state = {
       current: props.currentPage,
-      jumpValue: null
+      jumpValue: null,
+      size: props.pageSize
     }
   }
   itemClick = (current) => {
@@ -56,7 +58,8 @@ class Pagination extends PureComponent {
   }
   get _totalPage () {
     const {total, pageSize} = this.props
-    const num = Math.ceil(total / pageSize)
+    const {size} = this.state
+    const num = Math.ceil(total / size)
     return num === 0 ? 1 : num
   }
   get _prevDisabled () {
@@ -80,22 +83,45 @@ class Pagination extends PureComponent {
     }
     this.setCurrentPage(current + 1)
   }
-  _jumpPageChange = (e) => {
-    const value = Number(e.target.value)
-    if (!value || isNaN(value) || value > this._totalPage) {
-      return
+  /**
+   * @param {* 当前激活的页数} current
+   */
+  _jumpPageChange = (current) => {
+    this.setCurrentPage(current)
+  }
+
+  /**
+   * @param {* 当前激活的条数} item
+   * @param {* 当前激活的条数索引} index
+   */
+  _selectChange = (item, index) => {
+    const {total} = this.props
+    const {current, size} = this.state
+    if (item !== size) {
+      if (Math.ceil(total / item) < current) {
+        this.setCurrentPage(1)
+      }
+      this.setPageSize(item)
     }
-    if (value !== this.state.current) {
-      this.setState({
-        current: Number(value)
-      })
+  }
+
+  /**
+   * 
+   * @param {*当前激活的显示条数} size 
+   */
+  setPageSize (size) {
+    this.setState({
+      size
+    })
+    if (this.props.onSizeChange) {
+      this.props.onSizeChange(size)
     }
   }
   render () {
-    const {total} = this.props
+    const {total, pageSizes, className, style} = this.props
     return (
-      <div className={classnames('xerxes-wrapper')}
-
+      <div className={classnames('xerxes-wrapper', className)}
+        style={style}
       >
         <div className="xerxes-total">
           <span>共 {total} 条</span>
@@ -114,27 +140,17 @@ class Pagination extends PureComponent {
           })}
           onClick={this.next}
           >
-            <i className="iconfont icon-xiangyoujiantou"></i>
+            <i className="icon iconfont icon-xiangyoujiantou"></i>
           </li>
         </ul> }
         <Select 
-        options={[10, 20, 30, 40]}
+        options={pageSizes}
+          selectChange={this._selectChange}
         />
-        <div className="xerxes-quickjump">
-          <span>前往</span>
-          <input 
-          type="number"
-          min={1}
-          max={this._totalPage}
-          onBlur={this._jumpPageChange}
-          onKeyUp={e => {
-            if (e.keyCode === 13) {
-              this._jumpPageChange(e)
-            }
-          }}
-          />
-          <span>页</span>
-        </div>
+        <JumpPager 
+        totalPage={this._totalPage}
+        jumpPageChange={this._jumpPageChange}
+        />
       </div>
     )
   }
@@ -143,13 +159,18 @@ class Pagination extends PureComponent {
 Pagination.propTypes = {
   total: PropTypes.number,
   currentPage: PropTypes.number,
-  pageSize: PropTypes.number
+  pageSize: PropTypes.number,
+  layout: PropTypes.array,
+  pageSizes: PropTypes.array,
+  onSizeChange: PropTypes.func,
+  onCurrentChange: PropTypes.func
 }
 
 Pagination.defaultProps = {
   total: 0,
   currentPage: 1,
-  pageSize: 5
+  pageSize: 10,
+  pageSizes: [10, 20, 30, 40]
 }
 
 export default Pagination
